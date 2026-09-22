@@ -17,13 +17,25 @@ An automated, user-friendly Python tool designed to streamline audio asset integ
 1. **Python 3.x** installed on your system.
 2. The official WAAPI client library for Python:
    ```bash
-   pip install waapi-client
+   pip install -r requirements.txt
+   ```
+3. **Wwise** open with your project loaded, and WAAPI enabled:
+   * Go to **Project > User Preferences** (or *Preferences* depending on your version) and check **"Enable Wwise Authoring API (WAAPI)"**.
 
 ---
 
-🛠️ Configuration
-You can customize the script behavior by editing the configuration variables at the top of wwise_auto_import.pyw:
+## 🚧 Known Limitations & Roadmap
 
+* **Duplicate Check Logic (v1.0):** The current delta sync relies solely on the filename string (`stem`) to prevent duplicates.
+* **Future Update (v2.0):** The script will be updated to parse relative paths and utilize recursive WAAPI calls (`ak.wwise.core.object.create`) to ensure the Wwise Physical Folder hierarchy mirrors the Windows source folder structure. This will prevent false positives for files sharing the same name in different directories (e.g., `wood/step_01.wav` vs `concrete/step_01.wav`).
+
+---
+
+## 🛠️ Configuration
+
+You can customize the script behavior by editing the configuration variables at the top of `wwise_auto_import.pyw`:
+
+```python
 # Audio formats to scan
 AUDIO_EXTENSIONS = {".wav", ".aif", ".aiff", ".mp3", ".ogg", ".wem"}
 
@@ -38,14 +50,13 @@ IMPORT_LANGUAGE = "SFX"
 
 # Import operation behavior ("useExisting", "replaceExisting", "createNew")
 IMPORT_OPERATION = "useExisting"
+```
 
 ---
 
-🎮 How to Use
-Double-click on wwise_auto_import.pyw.
+## 🎮 How to Use
 
-Select the source folder containing your audio assets using the native dialog window.
-
-Watch the embedded console log the analysis, delta check, and real-time import progress.
-
-Once completed, a success summary dialog will appear detailing the imported and skipped/corrupted files.
+1. Double-click on `wwise_auto_import.pyw`.
+2. Select the source folder containing your audio assets using the native dialog window.
+3. Watch the embedded console log the analysis, delta check, and real-time import progress.
+4. Once completed, a success summary dialog will appear detailing the imported and skipped/corrupted files.
