@@ -18,3 +18,34 @@ An automated, user-friendly Python tool designed to streamline audio asset integ
 2. The official WAAPI client library for Python:
    ```bash
    pip install waapi-client
+
+---
+
+🛠️ Configuration
+You can customize the script behavior by editing the configuration variables at the top of wwise_auto_import.pyw:
+
+# Audio formats to scan
+AUDIO_EXTENSIONS = {".wav", ".aif", ".aiff", ".mp3", ".ogg", ".wem"}
+
+# Target Wwise object path where new sounds will be created
+WWISE_IMPORT_TARGET_PATH = r"\Actor-Mixer Hierarchy\Default Work Unit"
+
+# Wwise sound object type tag
+WWISE_SOUND_TYPE_TAG = "Sound SFX"
+
+# Import language
+IMPORT_LANGUAGE = "SFX"
+
+# Import operation behavior ("useExisting", "replaceExisting", "createNew")
+IMPORT_OPERATION = "useExisting"
+
+---
+
+🎮 How to Use
+Double-click on wwise_auto_import.pyw.
+
+Select the source folder containing your audio assets using the native dialog window.
+
+Watch the embedded console log the analysis, delta check, and real-time import progress.
+
+Once completed, a success summary dialog will appear detailing the imported and skipped/corrupted files.
